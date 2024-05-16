@@ -6,6 +6,8 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 
+import { Button } from 'views/atoms'
+
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,7 +22,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
 
       <body>
-        {children}
+        <Button />
+        { children }
 
         <ScrollRestoration />
         <Scripts />

@@ -13,12 +13,13 @@
     "noEmit": true,
     "noImplicitAny": true,
     "paths": {
-      "hooks/*": ["src/hooks/*"],
-      "lib/*": ["src/lib/*"],
+      "hooks/*": ["app/hooks/*"],
+      "lib/*": ["app/lib/*"],
       "public/*": ["public/*"],
-      "stores/*": ["src/stores/*"],
-      "views/*": ["src/views/*"],
-      "utils/*": ["src/utils/*"]
+      "stores/*": ["app/stores/*"],
+      "styles/*": ["app/styles/*"],
+      "views/*": ["app/views/*"],
+      "utils/*": ["app/utils/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
