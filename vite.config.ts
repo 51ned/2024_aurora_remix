@@ -15,7 +15,7 @@ type ViteConfigInput = {
 
 export default (args: ViteConfigInput) => {
   const generateScopedName = args.mode === 'development'
-    ? ``
+    ? '[local]_[hash:base64:3]'
     : '[hash:base64:3]'
 
   return defineConfig({
