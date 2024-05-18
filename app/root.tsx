@@ -6,10 +6,15 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 
-import { Button } from 'views/atoms'
+import styles from 'styles/index.css?url'
 
 
-export function Layout({ children }: { children: React.ReactNode }) {
+const links = () => {
+  return [{ rel: 'stylesheet', href: styles }]
+}
+
+
+function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html dir='ltr' lang='ru'>
       <head>
@@ -22,7 +27,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
 
       <body>
-        <Button />
         { children }
 
         <ScrollRestoration />
@@ -32,6 +36,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
+
 export default function App() {
   return <Outlet />
 }
+
+export { Layout, links }
