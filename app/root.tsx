@@ -33,14 +33,14 @@ async function loader({ request }: LoaderFunctionArgs) {
     }
   } 
 
-  return json({theme: themeFromHeaders})
+  return json({fromHeaders: themeFromHeaders})
 }
 
 
 function Layout({ children }: { children: React.ReactNode }) {
   const theme = useLoaderData<typeof loader>()
-  console.log(theme)
-  
+  console.log(theme.fromHeaders)
+
   return (
     <html dir='ltr' lang='ru'>
       <head>
