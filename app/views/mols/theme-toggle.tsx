@@ -11,7 +11,7 @@ export function ThemeToggle({ theme }: { theme: string | null }) {
 
   const onInputChange = (value: string) => {
     setCurrTheme(value)
-    console.log('currTheme')
+    console.log(currTheme)
   }
   
   return (
