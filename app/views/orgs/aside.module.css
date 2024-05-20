@@ -1,0 +1,19 @@
+.wrap {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+
+  @media (max-width: 960px) {
+    backdrop-filter: saturate(180%) blur(5px);
+    box-shadow: inset 0 1px 0 0 #333;
+    flex-direction: row;
+    height: auto;
+    padding: 24px;
+  }
+
+  /* & > *:first-child { @media (max-width: 960px) { order: 2;} }
+  & > *:nth-child(2) { @media (max-width: 960px) { order: 1;} }
+  & > *:nth-child(3) { @media (max-width: 960px) { order: 3;} } */
+}

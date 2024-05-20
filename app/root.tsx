@@ -11,6 +11,9 @@ import {
 
 import { parse } from 'cookie'
 
+import { Aside, Footer, Nav } from 'views/orgs'
+import { GTM, ThemeToggle } from 'views/mols'
+
 import styles from 'styles/index.css?url'
 
 
@@ -18,8 +21,8 @@ const links = () => {
   return [{ rel: 'stylesheet', href: styles }]
 }
 
-async function loader({ request }: LoaderFunctionArgs) {
-  let themeFromHeaders = null
+const loader = async ({ request }: LoaderFunctionArgs) => {
+  let fromHeaders = null
 
   const cookieHeader = request.headers.get('Cookie')
 
@@ -27,19 +30,28 @@ async function loader({ request }: LoaderFunctionArgs) {
     const cookies = parse(cookieHeader)
 
     if (cookies.theme) {
-      themeFromHeaders = cookies.theme
+      fromHeaders = cookies.theme
     } else {
-      themeFromHeaders = request.headers.get('sec-ch-prefers-color-scheme')
+      fromHeaders = request.headers.get('sec-ch-prefers-color-scheme')
     }
   } 
 
-  return json({fromHeaders: themeFromHeaders})
+  return json({theme: fromHeaders})
 }
 
 
 function Layout({ children }: { children: React.ReactNode }) {
-  const theme = useLoaderData<typeof loader>()
-  console.log(theme.fromHeaders)
+  let theme = useLoaderData<typeof loader>().theme
+
+  if (!theme) {
+    theme = 'light'
+
+    if (typeof window !== 'undefined') {
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark'
+      }
+    }
+  }
 
   return (
     <html dir='ltr' lang='ru'>
@@ -55,6 +67,16 @@ function Layout({ children }: { children: React.ReactNode }) {
       <body>
         { children }
 
+        <Nav />
+
+        <Aside>
+          <ThemeToggle theme={theme} />
+        </Aside>
+
+        <Footer />
+
+        <GTM />
+        
         <ScrollRestoration />
         <Scripts />
       </body>

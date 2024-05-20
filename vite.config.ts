@@ -14,9 +14,9 @@ installGlobals()
 
 
 export default (mode: string) => {
-  const generateScopedName = mode === 'development'
-    ? '[local]__[hash:base64:2]'
-    : '[hash:base64:2]'
+  const generateScopedName = mode === 'production'
+    ? '[hash:base64:2]'
+    : '[local]__[hash:base64:2]'
 
   return defineConfig({
     build: {
@@ -42,6 +42,7 @@ export default (mode: string) => {
 
     resolve: {
       alias: {
+        'hoc': path.resolve(__dirname, 'app/hoc'),
         'hooks': path.resolve(__dirname, 'app/hooks'),
         'lib': path.resolve(__dirname, 'app/lib'),
         'public': path.resolve(__dirname, 'public'),

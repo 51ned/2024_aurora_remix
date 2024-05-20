@@ -1,0 +1,21 @@
+.wrap {
+  position: relative;
+}
+
+.container {
+  background-color: var(--clr-base-inv);
+  display: grid;
+}
+
+.input {
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.status {
+  background-color: var(--clr-base-inv);
+  position: absolute;
+  top: 50%;
+  transition: transform .2s;
+  z-index: -1;
+}

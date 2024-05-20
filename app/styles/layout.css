@@ -1,29 +1,18 @@
-@import url(colors.css);
-@import url(common.css);
-@import url(geometry.css);
-@import url(typography.css);
+/*  
+  This CSS module defines the layout of the elements on the page.
+  Nothing the more, but nothing the less.
+  I chose a strictly defined CSS grid in order to use subgrid.
+  Subgrid allows me to write cleaner HTML markup, avoiding unnecessary wrapping of elements.
+**/
 
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-a, a:hover, a:link, a:visited {
-  text-decoration: none;
-}
-
-html {
-  scroll-behavior: smooth;
-  touch-action: manipulation;
-}
 
 body {
   display: grid;
   grid-template-columns: 
     [fullbleed-start] 0
-    [leftbar-start] 128px /* !!! */
+    [leftbar-start] 150px /* !!! */
     [leftbar-end content-start] 1fr
-    [content-end rightbar-start] 64px /* !!! */
+    [content-end rightbar-start] 56px /* !!! */
     [rightbar-end] 0 [fullbleed-end];
   grid-template-rows:
     [nav] min-content
