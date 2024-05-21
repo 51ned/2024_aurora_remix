@@ -6,8 +6,8 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { installGlobals } from '@remix-run/node'
 import { vitePlugin as remix } from '@remix-run/dev'
 
-import browserslist from 'browserslist'
-import { browserslistToTargets } from 'lightningcss'
+// import browserslist from 'browserslist'
+// import { browserslistToTargets } from 'lightningcss'
 
 
 installGlobals()
@@ -20,12 +20,12 @@ export default () => {
     },
 
     css: {
-      lightningcss: {
-        drafts: {
-          customMedia: true
-        },
-        targets: browserslistToTargets(browserslist('>= 0.25%'))
-      },
+      // lightningcss: {
+      //   drafts: {
+      //     customMedia: true
+      //   },
+      //   targets: browserslistToTargets(browserslist('>= 0.25%'))
+      // },
       modules: {
         generateScopedName: '[hash:base64:2]'
       }
