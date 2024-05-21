@@ -11,9 +11,8 @@ export function ThemeToggle({ theme }: { theme: string | null }) {
 
   const onInputChange = (value: string) => {
     setCurrTheme(value)
-    console.log(currTheme)
   }
-  
+  console.log(`theme from root: ${theme}, currTheme: ${currTheme}`)
   return (
     <Toggle
       customStyles={s.icon}

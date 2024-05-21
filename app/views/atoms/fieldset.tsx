@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { withCustomStyle } from 'hoc/.'
 
 import s from './fieldset.module.css'
