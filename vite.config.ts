@@ -13,11 +13,7 @@ import { browserslistToTargets } from 'lightningcss'
 installGlobals()
 
 
-export default (mode: string) => {
-  const generateScopedName = mode === 'production'
-    ? '[hash:base64:2]'
-    : '[local]__[hash:base64:2]'
-
+export default () => {
   return defineConfig({
     build: {
       cssMinify: 'lightningcss'
@@ -31,7 +27,7 @@ export default (mode: string) => {
         targets: browserslistToTargets(browserslist('>= 0.25%'))
       },
       modules: {
-        generateScopedName
+        generateScopedName: '[hash:base64:2]'
       }
     },
 

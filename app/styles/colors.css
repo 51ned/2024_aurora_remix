@@ -1,21 +1,11 @@
 :root {
+  color-scheme: light dark;
+
   --clr-light: hsl(0, 0%, 100%);
   --clr-dark: hsl(0, 0%, 0%);
 
   --clr-base: light-dark(var(--clr-light), var(--clr-dark));
   --clr-base-inv: light-dark(var(--clr-dark), var(--clr-light));
-}
-
-html {
-  color-scheme: light dark;
-}
-
-html[data-theme=light] {
-  color-scheme: light;
-}
-
-html[data-theme=dark] {
-  color-scheme: dark;
 }
 
 body {
