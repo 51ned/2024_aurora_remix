@@ -1,7 +1,10 @@
-@import url(colors.css);
-@import url(common.css);
-@import url(geometry.css);
-@import url(typography.css);
+:root {
+  --dark: #000;
+  --light: #fff;
+  
+  --clr-base: light-dark(var(--light), var(--dark));
+  --clr-base-inv: light-dark(var(--dark), var(--light));
+}
 
 
 *, *::before, *::after {
@@ -13,11 +16,22 @@ a, a:hover, a:link, a:visited {
 }
 
 html {
+  color-scheme: light dark;
   scroll-behavior: smooth;
   touch-action: manipulation;
+
+  &:has(input[value='dark']:checked) {
+    color-scheme: dark;
+  }
+  
+  &:has(input[value='light']:checked) {
+    color-scheme: light;
+  }
 }
 
 body {
+  background-color: var(--clr-base);
+  color: var(--clr-base-inv);
   display: grid;
   grid-template-columns: 
     [fullbleed-start] 0
@@ -31,8 +45,10 @@ body {
     [main] 1fr
     [footer] min-content
     [aside] min-content;
+  margin: 0;  
   max-width: 1920px;
   min-height: 100vh;
+  transition: background-color, color, .2s;
 
   @media (max-width: 1280px) {
     grid-template-columns: 
@@ -87,4 +103,30 @@ aside {
     height: auto;
     top: unset;
   }
+}
+
+.sr-only {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);  /* 2 */
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+  -webkit-clip-path: inset(50%);
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+	clip: auto;
+	clip-path: none;
+	height: auto;
+	margin: auto;
+	overflow: visible;
+	width: auto;
+	white-space: normal;
+  -webkit-clip-path: none;
 }

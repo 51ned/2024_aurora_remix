@@ -1,25 +1,23 @@
-import { withCustomStyle } from 'hoc/.'
+import cn from 'classnames'
 
 import s from './fieldset.module.css'
 
 
 interface FieldsetProps {
   children: React.ReactNode,
-  className?: string,
   customStyle?: string
 }
 
 
-function NudeFieldset({
+function Fieldset({
   children,
-  className
+  customStyle
 }: FieldsetProps) {
+  const combinedStyle = cn(s.fieldset, customStyle)
+
   return (
-    <fieldset className={className}>
-      {children}
+    <fieldset className={combinedStyle}>
+      { children }
     </fieldset>
   )
 }
-
-
-export const Fieldset = withCustomStyle(NudeFieldset, s.fieldset)
