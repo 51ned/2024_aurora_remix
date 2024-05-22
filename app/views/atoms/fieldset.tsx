@@ -9,7 +9,7 @@ interface FieldsetProps {
 }
 
 
-function Fieldset({
+export function Fieldset({
   children,
   customStyle
 }: FieldsetProps) {
