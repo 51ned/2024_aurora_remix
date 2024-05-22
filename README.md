@@ -1,0 +1,1 @@
+Lightning CSS полифилит light-dark() только если задать color-scheme внутри html... молодец какой (нет).

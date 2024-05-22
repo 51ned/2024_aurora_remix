@@ -16,17 +16,14 @@ a, a:hover, a:link, a:visited {
 }
 
 html {
-  
+  color-scheme: light dark;
   scroll-behavior: smooth;
   touch-action: manipulation;
-
-  
 }
 
 body {
   background-color: var(--base-clr);
   color: var(--base-clr-inv);
-  color-scheme: light dark;
   display: grid;
   grid-template-columns: 
     [fullbleed-start] 0
