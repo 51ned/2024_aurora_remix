@@ -7,7 +7,7 @@
   * Then, I think it makes sense to keep values like the size of 'div.status', border-radii and offsets inside.
   * All other styling is placed in the CSS module and the global styles.
   * 
-  @param { string } customStyles:
+  @param { string } customStyle:
   A string representing a className for customizing the appearance of the component.
   This prop allows applying custom styles to the component from outside.
   @param { inputProps[] } inputsData:
@@ -43,7 +43,7 @@ type inputProps = {
 }
 
 interface ToggleProps {
-  customStyles?: string;
+  customStyle?: string;
   dir: 'horisontal' | 'vertical',
   inputsData: inputProps[],
   legendText: string,
@@ -53,7 +53,7 @@ interface ToggleProps {
 
 
 export function Toggle({
-  customStyles,
+  customStyle,
   dir,
   inputsData,
   legendText,
@@ -61,9 +61,9 @@ export function Toggle({
   valueToCompare
 }: ToggleProps) {
   // Setting up toggle geometry:
-  const toggleSize = 32
-  const borderSize = 4
-  const statusSize = toggleSize - borderSize * 2
+  const inputSize = 32
+  const borderWidth = 4
+  const statusSize = inputSize - borderWidth * 2
   const getHalf = (num: number) => { return num / 2 }
 
   const gridDir = dir === 'horisontal'
@@ -79,20 +79,14 @@ export function Toggle({
     setCheckedIndex(inputsData.findIndex(i => i.value === valueToCompare))
   }, [inputsData, valueToCompare])
   
-  // Define input's handle:
+  // Define input's handle...
   const onChangeHandle = (value: string, index: number) => {
     onInputChange(value)
     setCheckedIndex(index)
   }
 
   // ...and styles:
-  let inputStyles = s.input
-
-  if (customStyles) {
-    inputStyles = cn(s.input, {
-      [customStyles]: customStyles
-    })
-  }
+  let inputStyles = cn(s.input, customStyle)
 
   return (
     <Fieldset customStyle={s.wrap}>
@@ -104,7 +98,7 @@ export function Toggle({
         className={s.container}
         role='radiogroup'
         style={{
-          borderRadius: getHalf(toggleSize),
+          borderRadius: getHalf(inputSize),
           [gridDir]: `repeat(${inputsData.length}, 1fr)`
         }}
       >
@@ -117,8 +111,8 @@ export function Toggle({
             name={item.name}
             onChange={() => onChangeHandle(item.value, index)}
             style={{
-              height: toggleSize,
-              width: toggleSize
+              height: inputSize,
+              width: inputSize
             }}
             type='radio'
             value={item.value}
@@ -134,7 +128,7 @@ export function Toggle({
           borderRadius: getHalf(statusSize),
           height: statusSize,
           marginTop: `-${getHalf(statusSize)}px`,
-          transform: `translate${axle}(${checkedIndex * toggleSize + borderSize}px)`,
+          transform: `translate${axle}(${checkedIndex * inputSize + borderWidth}px)`,
           width: statusSize
         }}
       />

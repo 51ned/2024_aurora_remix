@@ -3,17 +3,19 @@
 }
 
 .container {
-  background-color: var(--clr-base-inv);
+  background-color: var(--base-clr-inv-20);
   display: grid;
 }
 
 .input {
+  appearance: none;
   background-position: center;
   background-repeat: no-repeat;
+  margin: 0;
 }
 
 .status {
-  background-color: var(--clr-base-inv);
+  background-color: var(--base-clr-inv);
   position: absolute;
   top: 50%;
   transition: transform .2s;

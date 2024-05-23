@@ -12,7 +12,9 @@ import {
 import { parse } from 'cookie'
 
 import { Aside, Footer, Nav } from 'views/orgs'
-import { GTM, ThemeToggle } from 'views/mols'
+import { GTM } from 'views/mols'
+
+import { getThemeFromWindow } from 'utils/.'
 
 import styles from 'styles/index.css?url'
 
@@ -44,13 +46,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
 
   if (!theme) {
-    theme = 'light'
-
-    if (typeof window !== 'undefined') {
-      if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        theme = 'dark'
-      }
-    }
+    theme = getThemeFromWindow()
   }
 
   return (
@@ -68,11 +64,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         { children }
 
         <Nav />
-
-        <Aside>
-          <ThemeToggle theme={theme} />
-        </Aside>
-
+        <Aside theme={theme} />
         <Footer />
 
         <GTM />
