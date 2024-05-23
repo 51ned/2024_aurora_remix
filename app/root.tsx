@@ -47,6 +47,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   if (!theme) {
     theme = getThemeFromWindow()
+    console.log('bzzz')
   }
 
   return (
