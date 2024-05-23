@@ -12,7 +12,6 @@ import {
 import { parse } from 'cookie'
 
 import { Aside, Footer, Nav } from 'views/orgs'
-import { GTM } from 'views/mols'
 
 import { getThemeFromWindow } from 'utils/.'
 
@@ -38,16 +37,16 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
     }
   } 
 
-  return json({theme: fromHeaders})
+  return json({ theme: fromHeaders })
 }
 
 
 function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
-  console.log(theme)
+  console.log(`theme from headers: ${theme}`)
   if (!theme) {
     theme = getThemeFromWindow()
-    console.log('иии')
+    console.log(`theme from window: ${theme}`)
   }
 
   return (
@@ -67,8 +66,6 @@ function Layout({ children }: { children: React.ReactNode }) {
         <Nav />
         <Aside theme={theme} />
         <Footer />
-
-        <GTM />
         
         <ScrollRestoration />
         <Scripts />
