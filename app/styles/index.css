@@ -25,14 +25,6 @@ html {
   color-scheme: light dark;
   scroll-behavior: smooth;
   touch-action: manipulation;
-
-  &:has(input[value='dark']:checked) {
-    color-scheme: dark;
-  }
-  
-  &:has(input[value='light']:checked) {
-    color-scheme: light;
-  }
 }
 
 body {
@@ -55,6 +47,14 @@ body {
   max-width: 1920px;
   min-height: 200vh;
   transition: background-color, color, .2s;
+
+  &:has(input[value='dark']:checked) {
+    color-scheme: dark;
+  }
+  
+  &:has(input[value='light']:checked) {
+    color-scheme: light;
+  }
 
   @media (max-width: 1280px) {
     grid-template-columns: 

@@ -12,7 +12,7 @@ export function Aside({ theme }: { theme: string }) {
   const onInputChange = (value: string) => {
     setCurrTheme(value)
   }
-
+  
   return (
     <aside>
       <div className={s.wrap}>
