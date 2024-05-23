@@ -44,10 +44,10 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
 
 function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
-
+  console.log(theme)
   if (!theme) {
     theme = getThemeFromWindow()
-    console.log('bzzz')
+    console.log('иии')
   }
 
   return (
