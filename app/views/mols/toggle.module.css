@@ -3,7 +3,7 @@
 }
 
 .container {
-  background-color: var(--base-clr-inv);
+  background-color: var(--base-clr-inv-20);
   display: grid;
 }
 
