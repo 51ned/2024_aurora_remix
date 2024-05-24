@@ -9,11 +9,14 @@ import {
   useLoaderData
 } from '@remix-run/react'
 
-import { parse } from 'cookie'
-
 import { Aside, Footer, Nav } from 'views/orgs'
 
-import { getThemeFromWindow } from 'utils/.'
+import {
+  getFromCookies,
+  getFromHeaders,
+  getFromWindow,
+  setCookies
+} from 'utils/theme-handles'
 
 import styles from 'styles/index.css?url'
 
@@ -23,31 +26,23 @@ const links = () => {
 }
 
 const loader = async ({ request }: LoaderFunctionArgs) => {
-  let fromHeaders = null
+  let response = getFromCookies(request)
 
-  const cookieHeader = request.headers.get('cookie')
+  if (!response) {
+    response = getFromHeaders(request)
+  }
 
-  if (cookieHeader) {
-    const cookies = parse(cookieHeader)
-
-    if (cookies.theme) {
-      fromHeaders = cookies.theme
-    } else {
-      fromHeaders = request.headers.get('sec-ch-prefers-color-scheme')
-    }
-  } 
-
-  return json({ theme: fromHeaders })
+  return json({ theme: response })
 }
 
 
 function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
   console.log(`theme from headers: ${theme}`)
-  // if (!theme) {
-  //   // theme = getThemeFromWindow()
-  //   // console.log(`theme from window: ${theme}`)
-  // }
+  if (!theme) {
+    theme = getFromWindow()
+    setCookies(theme)
+  }
 
   return (
     <html dir='ltr' lang='ru'>

@@ -1,4 +1,4 @@
-export function getThemeFromWindow() {
+export function getFromWindow() {
   let theme = 'light'
 
   if (typeof window !== 'undefined') {
