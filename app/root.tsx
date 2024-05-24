@@ -25,13 +25,14 @@ const links = () => {
 }
 
 const loader = async ({ request }: LoaderFunctionArgs) => {
-  let response = getFromCookies(request)
-  console.log(`res from cookies: ${response}`)
-  if (!response) {
-    response = getFromHeaders(request)
+  console.log('Request headers:', request.headers)
+  let res = getFromCookies(request)
+  
+  if (!res) {
+    res = getFromHeaders(request)
   }
 
-  return json({ theme: response })
+  return json({ theme: res })
 }
 
 
