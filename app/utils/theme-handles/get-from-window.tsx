@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { setCookies } from './set-cookies'
 
 
 export function getFromWindow() {
-  const [theme, setTheme] = useState(() => {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  })
+  let theme = 'light'
+
+  if (typeof window !== 'undefined') {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme = 'dark'
+    }
+  }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
