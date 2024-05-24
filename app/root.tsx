@@ -37,13 +37,13 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
     }
   } 
 
-  return json({theme: fromHeaders})
+  return json({ theme: fromHeaders })
 }
 
 
 function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
-  console.log(`theme from headers: ${theme}`)
+    console.log(`theme from headers: ${theme}`)
   // if (!theme) {
   //   // theme = getThemeFromWindow()
   //   // console.log(`theme from window: ${theme}`)

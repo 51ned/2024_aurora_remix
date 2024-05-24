@@ -1,9 +1,9 @@
 :root {
   --dark: hsl(0, 0%, 0%);
-  --light: hsl(0, 0%, 200%);
+  --light: hsl(0, 0%, 100%);
 
   --dark-20: hsla(0, 0%, 0%, .2);
-  --light-20: hsla(0, 0%, 200%, .2);
+  --light-20: hsla(0, 0%, 100%, .2);
   
   --base-clr: light-dark(var(--light), var(--dark));
   --base-clr-inv: light-dark(var(--dark), var(--light));
@@ -11,7 +11,6 @@
   --base-clr-20: light-dark(var(--light-20), var(--dark-20));
   --base-clr-inv-20: light-dark(var(--dark-20), var(--light-20));
 }
-
 
 *, *::before, *::after {
   box-sizing: border-box;
