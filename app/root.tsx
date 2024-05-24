@@ -25,7 +25,6 @@ const links = () => {
 }
 
 const loader = async ({ request }: LoaderFunctionArgs) => {
-  console.log('Request headers:', request.headers)
   let res = getFromCookies(request)
   
   if (!res) {
@@ -38,7 +37,7 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
 
 function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
-  console.log(`theme from headers: ${theme}`)
+  
   if (!theme) {
     theme = getFromWindow()
   }
