@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react'
-
-
 export function getThemeFromWindow() {
-  const [theme, setTheme] = useState('light')
+  let theme = 'light'
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark')
-      }
+  if (typeof window !== 'undefined') {
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme = 'dark'
     }
-  }, [])
+  }
 
   return theme
 }

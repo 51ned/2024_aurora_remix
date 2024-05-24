@@ -6,7 +6,7 @@ import { inputsData } from 'lib/components-data/theme-toggle'
 import s from './aside.module.css'
 
 
-export function Aside({ theme }: { theme: string }) {
+export function Aside({ theme }: { theme: string | null }) {
   const [currTheme, setCurrTheme] = useState(theme)
 
   const onInputChange = (value: string) => {
