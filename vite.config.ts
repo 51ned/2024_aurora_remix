@@ -51,7 +51,7 @@ export default () => {
 
     server: {
       headers: {
-        accept: 'sec-ch-prefers-color-scheme'
+        'accept-ch': 'sec-ch-prefers-color-scheme'
       },
       port: 3000
     }
