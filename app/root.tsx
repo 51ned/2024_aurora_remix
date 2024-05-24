@@ -14,8 +14,7 @@ import { Aside, Footer, Nav } from 'views/orgs'
 import {
   getFromCookies,
   getFromHeaders,
-  getFromWindow,
-  setCookies
+  getFromWindow
 } from 'utils/theme-handles'
 
 import styles from 'styles/index.css?url'
@@ -27,7 +26,7 @@ const links = () => {
 
 const loader = async ({ request }: LoaderFunctionArgs) => {
   let response = getFromCookies(request)
-
+  console.log(`res from cookies: ${response}`)
   if (!response) {
     response = getFromHeaders(request)
   }
@@ -41,7 +40,6 @@ function Layout({ children }: { children: React.ReactNode }) {
   console.log(`theme from headers: ${theme}`)
   if (!theme) {
     theme = getFromWindow()
-    setCookies(theme)
   }
 
   return (
