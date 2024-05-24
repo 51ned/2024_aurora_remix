@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { LoaderFunctionArgs, json } from '@remix-run/node'
 
 import {
@@ -6,10 +7,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData
+  useLoaderData,
+  useLocation
 } from '@remix-run/react'
 
 import { Aside, Footer, Nav } from 'views/orgs'
+
+import * as gtag from 'utils/gtm-handle'
 
 import {
   getFromCookies,
@@ -31,7 +35,10 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
     res = getFromHeaders(request)
   }
 
-  return json({ theme: res })
+  return json({
+    gtmId: process.env.GTM_ID,
+    theme: res
+  })
 }
 
 
@@ -41,6 +48,15 @@ function Layout({ children }: { children: React.ReactNode }) {
   if (!theme) {
     theme = getFromWindow()
   }
+
+  const gtmId = useLoaderData<typeof loader>().gtmId
+  const location = useLocation()
+
+  useEffect(() => {
+    if (gtmId?.length) {
+      gtag.pageview(location.pathname, gtmId);
+    }
+  }, [location, gtmId])
 
   return (
     <html dir='ltr' lang='ru'>
@@ -54,6 +70,30 @@ function Layout({ children }: { children: React.ReactNode }) {
       </head>
 
       <body>
+        {process.env.NODE_ENV === 'development' || !gtmId ? null : (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gtmId}`}
+            />
+            <script
+              async
+              id="gtag-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${gtmId}', {
+                  page_path: window.location.pathname,
+                });
+              `
+              }}
+            />
+          </>
+        )}
+
         { children }
 
         <Nav />
