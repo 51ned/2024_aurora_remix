@@ -16,7 +16,7 @@ export function getFromWindow() {
     if (typeof window !== 'undefined') {
       setCookies(theme)
     }
-  }, [theme])
+  }, [])
 
   return theme
 }
