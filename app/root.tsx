@@ -41,7 +41,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   console.log(`theme from headers: ${theme}`)
   if (!theme) {
     theme = getFromWindow()
-    setCookies(theme)
+    // setCookies(theme)
   }
 
   return (
