@@ -51,13 +51,13 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   const gtmId = useLoaderData<typeof loader>().gtmId
   const location = useLocation()
-
+  
   useEffect(() => {
     if (gtmId?.length) {
       gtag.pageview(location.pathname, gtmId);
     }
   }, [location, gtmId])
-
+  console.log(process.env.NODE_ENV)
   return (
     <html dir='ltr' lang='ru'>
       <head>
