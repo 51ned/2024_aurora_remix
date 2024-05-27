@@ -1,4 +1,4 @@
-import { useEffect, useId } from 'react'
+import { Suspense, useEffect, useId } from 'react'
 import { useLocation } from '@remix-run/react'
 
 import * as gtag from 'utils/gtm-handle'
@@ -19,7 +19,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
   }
   
   return (
-    <>
+    <Suspense>
       <noscript>
         <iframe
           height='0'
@@ -47,6 +47,6 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
         }}
         id={scriptId}
       />
-    </>
+    </Suspense>
   )
 }
