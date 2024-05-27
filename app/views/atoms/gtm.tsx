@@ -1,21 +1,20 @@
 import { useEffect, useId } from 'react'
 import { useLocation } from '@remix-run/react'
 
-import * as gtag from 'utils/gtm-handle'
+import * as gTag from 'utils/gtm-handle'
 
 
 export function GTM({ gtmId }: { gtmId: string | undefined }) {
   const location = useLocation()
   const scriptId = useId()
-  let gtmScript: HTMLScriptElement
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development' || gtmId?.length) {
+    if (process.env.NODE_ENV === 'production' && gtmId?.length) {
       if (!document.getElementById(scriptId)) {
-        gtmScript = document.createElement('script')
+        const gtmScript = document.createElement('script')
 
         gtmScript.defer = true
-        gtmScript.id = scriptId
+        gtmScript.id = 'gTag-init'
         gtmScript.innerHTML = `
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
@@ -30,21 +29,17 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
         `
 
         document.head.appendChild(gtmScript)
-      }
 
-      return () => {
-        document.head.removeChild(gtmScript)
+        gtmScript.onload = () => {
+          gTag.pageview(location.pathname, gtmId)
+        }
+      } else {
+        gTag.pageview(location.pathname, gtmId)
       }
     }
   }, [location, gtmId])
   
-  // useEffect(() => {
-  //   if (gtmId?.length) {
-  //     gtag.pageview(location.pathname, gtmId)
-  //   }
-  // }, [location, gtmId])
-
-  return process.env.NODE_ENV === 'development' || !gtmId ? null : (
+  return process.env.NODE_ENV !== 'development' || gtmId?.length ? null : (
     <>
       <noscript>
         <iframe
