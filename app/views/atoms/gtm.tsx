@@ -10,11 +10,18 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production' && gtmId?.length) {
+      const preconnect = document.createElement('link')
+
+      preconnect.rel = 'preconnect'
+      preconnect.href = 'https://www.googletagmanager.com'
+      preconnect.crossOrigin = ''
+      document.head.appendChild(preconnect)
+
       if (!document.getElementById(scriptId)) {
         const gtmScript = document.createElement('script')
 
         gtmScript.defer = true
-        gtmScript.id = 'gTag-init'
+        gtmScript.id = scriptId
         gtmScript.innerHTML = `
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
