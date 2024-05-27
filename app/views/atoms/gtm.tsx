@@ -15,7 +15,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
 
         gtmScript.defer = true
         gtmScript.id = 'gtm'
-
+        
         gtmScript.innerHTML = `
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
@@ -24,7 +24,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
                 j=d.createElement(s),
                 dl=l!='dataLayer'?'&l='+l:'';
             j.async=true;
-            j.src='https://www.googletagmanager.com/gtm.js'+i+dl;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
             f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','${gtmId}');
         `
@@ -42,7 +42,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
       <noscript>
         <iframe
           height='0'
-          src={`https://www.googletagmanager.com/ns.html`}
+          src={`https://www.googletagmanager.com/ns.html?id=`}
           style={{ display: 'none', visibility: 'hidden' }}
           width='0'
         />
