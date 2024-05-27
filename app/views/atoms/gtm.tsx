@@ -42,7 +42,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
       <noscript>
         <iframe
           height='0'
-          src={`https://www.googletagmanager.com/ns.html?id=`}
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
           style={{ display: 'none', visibility: 'hidden' }}
           width='0'
         />
