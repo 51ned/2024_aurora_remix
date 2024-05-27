@@ -13,7 +13,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
       if (!document.getElementById(scriptId)) {
         const gtmScript = document.createElement('script')
 
-        gtmScript.defer = true
+        gtmScript.async = true
         gtmScript.id = 'gtm'
         
         gtmScript.innerHTML = `
