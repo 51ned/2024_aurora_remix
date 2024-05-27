@@ -28,13 +28,8 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
           })(window,document,'script','dataLayer','${gtmId}');
         `
 
-        setTimeout(() => {
-          document.head.appendChild(gtmScript);
-        }, 1500)
-
-        gtmScript.onload = () => {
-          gTag.pageview(location.pathname, gtmId)
-        }
+        document.head.appendChild(gtmScript)
+        gtmScript.onload = () => gTag.pageview(location.pathname, gtmId)
       } else {
         gTag.pageview(location.pathname, gtmId)
       }
