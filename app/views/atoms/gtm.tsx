@@ -7,7 +7,7 @@ import * as gtag from 'utils/gtm-handle'
 export function GTM({ gtmId }: { gtmId: string | undefined }) {
   const location = useLocation()
   const scriptId = useId()
-
+  
   useEffect(() => {
     if (gtmId?.length) {
       gtag.pageview(location.pathname, gtmId)
@@ -17,16 +17,18 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
   if (process.env.NODE_ENV === 'development' || !gtmId) {
     return null
   }
-
+  
   return (
     <>
-      <iframe
-        height='0'
-        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-        style={{ display: 'none', visibility: 'hidden' }}
-        width='0'
-      />
-      
+      <noscript>
+        <iframe
+          height='0'
+          src={`https://www.googletagmanager.com/ns.html?id=`}
+          style={{ display: 'none', visibility: 'hidden' }}
+          width='0'
+        />
+      </noscript>
+            
       <script
         async
         dangerouslySetInnerHTML={{

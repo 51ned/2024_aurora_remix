@@ -61,8 +61,6 @@ function Layout({ children }: { children: React.ReactNode }) {
       </head>
 
       <body>
-        <GTM gtmId={gtmId} />
-
         { children }
 
         <Nav />
@@ -71,6 +69,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         
         <ScrollRestoration />
         <Scripts />
+        <GTM gtmId={gtmId} />
       </body>
     </html>
   )
