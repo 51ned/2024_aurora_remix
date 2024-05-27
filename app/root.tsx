@@ -69,6 +69,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         
         <ScrollRestoration />
         <Scripts />
+        
         <GTM gtmId={gtmId} />
       </body>
     </html>
