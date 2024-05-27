@@ -10,13 +10,6 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production' && gtmId?.length) {
-      const preconnect = document.createElement('link')
-
-      preconnect.rel = 'preconnect'
-      preconnect.href = 'https://www.googletagmanager.com'
-      preconnect.crossOrigin = ''
-      document.head.appendChild(preconnect)
-
       if (!document.getElementById(scriptId)) {
         const gtmScript = document.createElement('script')
 
@@ -35,7 +28,9 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
           })(window,document,'script','dataLayer','${gtmId}');
         `
 
-        document.head.appendChild(gtmScript)
+        setTimeout(() => {
+          document.head.appendChild(gtmScript);
+        }, 1500)
 
         gtmScript.onload = () => {
           gTag.pageview(location.pathname, gtmId)
