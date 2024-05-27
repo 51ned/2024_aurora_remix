@@ -7,14 +7,15 @@ import * as gTag from 'utils/gtm-handle'
 export function GTM({ gtmId }: { gtmId: string | undefined }) {
   const location = useLocation()
   const scriptId = 'gtm'
-
+  
   useEffect(() => {
     if (process.env.NODE_ENV === 'production' && gtmId?.length) {
       if (!document.getElementById(scriptId)) {
         const gtmScript = document.createElement('script')
 
         gtmScript.defer = true
-        gtmScript.id = scriptId
+        gtmScript.id = 'gtm'
+        
         gtmScript.innerHTML = `
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
@@ -23,16 +24,14 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
                 j=d.createElement(s),
                 dl=l!='dataLayer'?'&l='+l:'';
             j.async=true;
-            j.src='https://www.googletagmanager.com/gtm.js?id=${gtmId}'+i+dl;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
             f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','${gtmId}');
         `
 
         document.head.appendChild(gtmScript)
         gtmScript.onload = () => gTag.pageview(location.pathname, gtmId)
-      }
-      
-      else {
+      } else {
         gTag.pageview(location.pathname, gtmId)
       }
     }
@@ -43,7 +42,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
       <noscript>
         <iframe
           height='0'
-          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+          src={`https://www.googletagmanager.com/ns.html?id=`}
           style={{ display: 'none', visibility: 'hidden' }}
           width='0'
         />
