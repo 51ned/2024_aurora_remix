@@ -6,8 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
-  useLocation
+  useLoaderData
 } from '@remix-run/react'
 
 import { GTM } from 'views/atoms'
@@ -55,8 +54,17 @@ function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='color-scheme' content='light dark' />
-        
+
         <Meta />
+
+        <link
+          as='font'
+          crossOrigin='anonymous'
+          href='fonts/montserrat.woff2'
+          rel='preload'
+          type='font/woff2'
+        />
+        
         <Links />
       </head>
 

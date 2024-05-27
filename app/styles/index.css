@@ -12,6 +12,13 @@
   --base-clr-inv-20: light-dark(var(--dark-20), var(--light-20));
 }
 
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/montserrat.woff2') format('woff2');
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -38,6 +45,7 @@ body {
   background-color: var(--base-clr);
   color: var(--base-clr-inv);
   display: grid;
+  font-family: 'Montserrat', sans-serif;
   grid-template-columns: 
     [fullbleed-start] 0
     [leftbar-start] 128px /* !!! */
