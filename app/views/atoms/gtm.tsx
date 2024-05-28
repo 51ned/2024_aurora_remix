@@ -3,7 +3,6 @@ import { useLocation } from '@remix-run/react'
 
 import * as gTag from 'utils/gtm-handle'
 
-
 export function GTM({ gtmId }: { gtmId: string | undefined }) {
   const location = useLocation()
   const scriptId = 'gtm'
@@ -32,22 +31,16 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
           `
 
           document.head.appendChild(gtmScript)
-
-          gtmScript.onload = () => {
-            console.log('GTM script loaded')
-            gTag.pageview(location.pathname, gtmId)
-          }
-        } else {
-          console.log('GTM script already exists')
+          gtmScript.onload = () => gTag.pageview(location.pathname, gtmId)
+        }
+        
+        else {
           gTag.pageview(location.pathname, gtmId)
         }
       }
 
-      document.readyState === 'complete' || document.readyState === 'interactive'
-        ? loadGTM()
-        : window.addEventListener('DOMContentLoaded', loadGTM)
-
-      return () => window.removeEventListener('DOMContentLoaded', loadGTM)
+      window.addEventListener('load', loadGTM)
+      return () => window.removeEventListener('load', loadGTM)
     }
   }, [location, gtmId])
 
@@ -56,6 +49,7 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
       <noscript>
         <iframe
           height='0'
+          loading='lazy'
           src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
           style={{ display: 'none', visibility: 'hidden' }}
           width='0'
