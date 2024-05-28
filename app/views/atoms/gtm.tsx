@@ -14,7 +14,8 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
         const gtmScript = document.createElement('script')
 
         gtmScript.async = true
-        gtmScript.id = 'gtm'
+        gtmScript.fetchPriority = 'low'
+        gtmScript.id = scriptId
         
         gtmScript.innerHTML = `
           (function(w,d,s,l,i){
