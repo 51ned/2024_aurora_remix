@@ -32,14 +32,22 @@ export function GTM({ gtmId }: { gtmId: string | undefined }) {
           `
 
           document.head.appendChild(gtmScript)
-          gtmScript.onload = () => gTag.pageview(location.pathname, gtmId)
+
+          gtmScript.onload = () => {
+            console.log('GTM script loaded')
+            gTag.pageview(location.pathname, gtmId)
+          }
         } else {
+          console.log('GTM script already exists')
           gTag.pageview(location.pathname, gtmId)
         }
       }
 
-      window.addEventListener('load', loadGTM)
-      return () => window.removeEventListener('load', loadGTM)
+      document.readyState === 'complete' || document.readyState === 'interactive'
+        ? loadGTM()
+        : window.addEventListener('DOMContentLoaded', loadGTM)
+
+      return () => window.removeEventListener('DOMContentLoaded', loadGTM)
     }
   }, [location, gtmId])
 
