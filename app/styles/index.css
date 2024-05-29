@@ -1,3 +1,6 @@
+@import url(geometry.css);
+
+
 :root {
   --dark: hsl(0, 0%, 0%);
   --light: hsl(0, 0%, 100%);
@@ -13,6 +16,7 @@
 }
 
 @font-face {
+  font-display: optional;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 100 900;
@@ -46,11 +50,12 @@ body {
   color: var(--base-clr-inv);
   display: grid;
   font-family: 'Montserrat', sans-serif;
+  gap: 0 var(--indent-24-16);
   grid-template-columns: 
     [fullbleed-start] 0
-    [leftbar-start] 128px /* !!! */
-    [leftbar-end content-start] 1fr
-    [content-end rightbar-start] 64px /* !!! */
+    [leftbar-start] repeat(2, 1fr)
+    [leftbar-end content-start] repeat(12, 1fr)
+    [content-end rightbar-start] minmax(64px, 1fr)
     [rightbar-end] 0 [fullbleed-end];
   grid-template-rows:
     [nav] min-content
@@ -60,22 +65,24 @@ body {
     [aside] min-content;
   margin: 0;  
   max-width: 1920px;
-  min-height: 200vh;
+  min-height: 100vh;
   transition: background-color, color, .2s;
 
   @media (max-width: 1280px) {
     grid-template-columns: 
       [fullbleed-start] 0
-      [content-start] 1fr
-      [content-end rightbar-start] 64px /* !!! */
+      [content-start] repeat(12, 1fr)
+      [content-end rightbar-start] minmax(64px, 1fr)
       [rightbar-end] 0 [fullbleed-end];
   }
 
   @media (max-width: 960px) {
     grid-template-columns: 
       [fullbleed-start] 0
-      [content-start] 1fr
-      [content-end] 0 [fullbleed-end];
+      [leftbar-start] var(--indent-24-16)
+      [leftbar-end content-start] 1fr
+      [content-end rightbar-start] var(--indent-24-16)
+      [rightbar-end] 0 [fullbleed-end];
   }
 }
 

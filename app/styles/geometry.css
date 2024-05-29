@@ -1,0 +1,18 @@
+:root {
+  --base: 4px;
+  --middle: round(2.5vw, 4px);
+  
+  --indent-80-48: clamp(48px, var(--middle), 80px);
+  --indent-64-40: clamp(40px, var(--middle), 64px);
+  --indent-48-32: clamp(32px, var(--middle), 48px);
+  --indent-40-32: clamp(32px, var(--middle), 40px);
+  --indent-32-24: clamp(24px, var(--middle), 32px);
+  --indent-24-16: clamp(16px, var(--middle), 24px);
+  --indent-20-16: clamp(16px, var(--middle), 20px);
+  --indent-16-12: clamp(12px, var(--middle), 16px);
+  --indent-12-8: clamp(8px, var(--middle), 12px);
+  --indent-8-4: clamp(4px, var(--middle), 8px);
+
+  --inner-radius: var(--base);
+  --outer-radius: calc(var(--base) * 2);
+}
