@@ -79,9 +79,7 @@ body {
   @media (max-width: 960px) {
     grid-template-columns: 
       [fullbleed-start] 0
-      [leftbar-start] var(--indent-24-16)
       [leftbar-end content-start] 1fr
-      [content-end rightbar-start] var(--indent-24-16)
       [rightbar-end] 0 [fullbleed-end];
   }
 }
