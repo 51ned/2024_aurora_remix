@@ -1,0 +1,87 @@
+/* Common */
+
+.accordion,
+.link,
+.primary,
+.regular,
+.tab {
+  font-size: var(--smaller-font-size);
+}
+
+.accordion,
+.primary,
+.regular,
+.tab {
+  width: 100%;
+}
+
+.primary,
+.regular,
+.tab {
+  padding: var(--indent-20-16) var(--indent-24-16);
+}
+
+.primary,
+.regular {
+  border-radius: var(--inner-radius);
+}
+
+.link, .primary, .stripped {
+  border: none;
+}
+
+.link, .regular, .stripped {
+  background-color: transparent;
+}
+
+
+/* Accordion */
+
+.accordion {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--indent-20-16) 0;
+  position: relative;
+}
+
+
+/* Link, Primary & Regular */
+
+.link {
+  color: blue; /* !!! */
+  border-bottom: 1px solid blue; /* !!! */
+}
+
+.primary {
+  background-color: #000; /* !!! */
+  color: #fff; /* !!! */
+}
+
+.regular {
+  border: 2px solid #000;
+}
+
+
+/* tab */
+
+.tab {
+  color: var(--muted-color);
+  position: relative;
+  text-align: left;
+}
+
+li:not(:last-child) > .tab::after {
+  background-color: var(--decor-light-gray);
+  bottom: 0;
+  content: '';
+  height: 2px;
+  left: 0;
+  margin-left: var(--indent-24-16);
+  position: absolute;
+  width: calc(100% - calc(var(--indent-24-16) * 2));
+}
+
+.tab[aria-expanded=true] {
+  color: var(--primary-color);
+}
