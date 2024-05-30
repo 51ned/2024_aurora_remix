@@ -82,6 +82,4 @@ li:not(:last-child) > .tab::after {
   width: calc(100% - calc(var(--indent-24-16) * 2));
 }
 
-.tab[aria-expanded=true] {
-  color: var(--primary-color);
-}
+.tab[aria-expanded=true] { color: var(--primary-color); }

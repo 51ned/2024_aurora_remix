@@ -1,0 +1,41 @@
+:root {
+  --smallest-font-size: 14px;
+  --smallest-line-height: 20px;
+
+  --smaller-font-size: 16px;
+  --smaller-line-height: 24px;
+
+  --regular-font-size: 18px;
+  --regular-line-height: 28px;
+
+  --subtitle-font-size: 22px;
+  --subtitle-line-height: 28px;
+
+  --h2-font-size: 30px;
+  --h2-h6-line-height: 36px;
+
+  --h1-font-size: 44px;
+  --h1-line-height: 56px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --smallest-font-size: 12px;
+    --smallest-line-height: 16px;
+  
+    --smaller-font-size: 16px;
+    --smaller-line-height: 24px;
+  
+    --regular-font-size: 16px;
+    --regular-line-height: 24px;
+  
+    --subtitle-font-size: 19px;
+    --subtitle-line-height: 24px;
+  
+    --h2-font-size: 22px;
+    --h2-h6-line-height: 28px;
+  
+    --h1-font-size: 29px;
+    --h1-line-height: 36px;
+  }
+}
