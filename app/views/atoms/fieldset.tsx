@@ -13,6 +13,7 @@ export function Fieldset({
   children,
   customStyle
 }: FieldsetProps) {
+  
   const combinedStyle = cn(s.fieldset, customStyle)
 
   return (

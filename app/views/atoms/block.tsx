@@ -18,6 +18,7 @@ export function Block({
   wrap,
   wrapCustomStyle
 }: BoxProps) {
+  
   const Wrap = wrap ?? React.Fragment
   const wrapDynamicClass: {[key: string]: string} = {}
 

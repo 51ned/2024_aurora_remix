@@ -86,7 +86,7 @@ export function Toggle({
   }
 
   // ...and styles:
-  let inputStyles = cn(s.input, customStyle)
+  const inputStyles = cn(s.input, customStyle)
 
   return (
     <Fieldset customStyle={s.wrap}>

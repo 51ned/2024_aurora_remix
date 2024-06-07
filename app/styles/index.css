@@ -1,4 +1,5 @@
 @import url(geometry.css);
+@import url(typography.css);
 
 
 :root {
@@ -41,6 +42,7 @@ button, input, select, textarea {
 
 html {
   color-scheme: light dark;
+  font-size: 16px;
   scroll-behavior: smooth;
   touch-action: manipulation;
 
@@ -67,7 +69,7 @@ body {
   color: var(--base-clr-inv);
   display: grid;
   font-family: 'Montserrat', sans-serif;
-  gap: 0 var(--indent-24-16);
+  gap: var(--indent-48-32) var(--indent-24-16);
   grid-template-columns: 
     [fullbleed-start] 0
     [leftbar-start] repeat(2, 1fr)

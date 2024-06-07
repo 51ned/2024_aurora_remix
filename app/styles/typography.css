@@ -1,41 +1,34 @@
 :root {
-  --smallest-font-size: 14px;
-  --smallest-line-height: 20px;
+  --smallest-fs: 0.75rem;
+  --smaller-fs: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
+  --regular-fs: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+  --h3-fs: clamp(1.25rem, 1.2rem + 0.25vw, 1.5rem);
+  --h2-fs: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
+  --h1-fs: clamp(2rem, 1.9rem + 0.5vw, 2.5rem);
 
-  --smaller-font-size: 16px;
-  --smaller-line-height: 24px;
+  --text-lh: 1.5;
+  --heading-lh: 1.25;
 
-  --regular-font-size: 18px;
-  --regular-line-height: 28px;
-
-  --subtitle-font-size: 22px;
-  --subtitle-line-height: 28px;
-
-  --h2-font-size: 30px;
-  --h2-h6-line-height: 36px;
-
-  --h1-font-size: 44px;
-  --h1-line-height: 56px;
+  --text-fw: 300;
+  --heading-fw: 500;
 }
 
-@media (max-width: 768px) {
-  :root {
-    --smallest-font-size: 12px;
-    --smallest-line-height: 16px;
-  
-    --smaller-font-size: 16px;
-    --smaller-line-height: 24px;
-  
-    --regular-font-size: 16px;
-    --regular-line-height: 24px;
-  
-    --subtitle-font-size: 19px;
-    --subtitle-line-height: 24px;
-  
-    --h2-font-size: 22px;
-    --h2-h6-line-height: 28px;
-  
-    --h1-font-size: 29px;
-    --h1-line-height: 36px;
-  }
+h1, h2, h3 {
+  font-weight: var(--heading-fw);
+  line-height: var(--heading-lh);
+  margin: 0;
+  padding-bottom: var(--indent-20-16);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--h1-fs);
+}
+
+h2 {
+  font-size: var(--h2-fs);
+}
+
+h3 {
+  font-size: var(--h3-fs);
 }

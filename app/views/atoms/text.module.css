@@ -1,0 +1,41 @@
+.base {
+  margin: 0;
+
+  &:not(:last-child) {
+    padding-bottom: var(--indent-20-16);
+  }
+}
+
+.paragraph {
+  line-height: var(--text-lh);
+}
+
+.smallest {
+  font-size: var(--smallest-fs);
+}
+
+.smaller {
+  font-size: var(--smaller-fs);
+}
+
+.regular {
+  font-size: var(--regular-fs);
+}
+
+.bigger, .biggest {
+  font-weight: var(--heading-fw);
+  line-height: var((--heading-lh));
+  text-wrap: balance;
+}
+
+.bigger {
+  font-size: var(--h3-fs);
+}
+
+.biggest {
+  font-size: var(--h2-fs);
+}
+
+.padded {
+  padding-bottom: var(--indent-20-16);
+}
