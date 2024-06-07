@@ -16,28 +16,8 @@
   --base-clr-inv-20: light-dark(var(--dark-20), var(--light-20));
 }
 
-@font-face {
-  font-display: optional;
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 100 900;
-  src: url('/fonts/montserrat.woff2') format('woff2');
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
-}
-
-a, a:hover, a:link, a:visited {
-  text-decoration: none;
-}
-
-blockquote, q {
-	quotes: none;
-}
-
-button, input, select, textarea {
-  font-family: inherit;
 }
 
 html {
@@ -55,10 +35,6 @@ html {
   }
 }
 
-ol, ul {
-	list-style: none;
-}
-
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -69,7 +45,7 @@ body {
   color: var(--base-clr-inv);
   display: grid;
   font-family: 'Montserrat', sans-serif;
-  gap: var(--indent-48-32) var(--indent-24-16);
+  gap: var(--indent-24-16);
   grid-template-columns: 
     [fullbleed-start] 0
     [leftbar-start] repeat(2, 1fr)
@@ -82,7 +58,7 @@ body {
     [main] 1fr
     [footer] min-content
     [aside] min-content;
-  margin: 0;  
+  margin: 0 auto;  
   max-width: 1920px;
   min-height: 100vh;
   transition: background-color, color, .2s;
@@ -145,7 +121,7 @@ aside {
 .sr-only {
 	border: 0;
 	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);  /* 2 */
+	clip-path: inset(50%);
 	height: 1px;
 	margin: -1px;
 	overflow: hidden;

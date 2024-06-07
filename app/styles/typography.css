@@ -13,6 +13,26 @@
   --heading-fw: 500;
 }
 
+@font-face {
+  font-display: optional;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/montserrat.woff2') format('woff2');
+}
+
+a, a:hover, a:link, a:visited {
+  text-decoration: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
 h1, h2, h3 {
   font-weight: var(--heading-fw);
   line-height: var(--heading-lh);
@@ -31,4 +51,8 @@ h2 {
 
 h3 {
   font-size: var(--h3-fs);
+}
+
+ol, ul {
+	list-style: none;
 }

@@ -24,7 +24,7 @@
 
 .bigger, .biggest {
   font-weight: var(--heading-fw);
-  line-height: var((--heading-lh));
+  line-height: var(--heading-lh);
   text-wrap: balance;
 }
 
