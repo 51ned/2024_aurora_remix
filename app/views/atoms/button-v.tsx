@@ -1,20 +1,9 @@
 import React, { useId } from 'react'
 import cn from 'classnames'
 
+import type { ButtonProps } from 'lib/types'
+
 import s from './button.module.css'
-
-
-interface ButtonProps {
-  children?: React.ReactNode,
-  controlledID?: string,
-  customStyle?: string
-  handleClick: () => void,
-  isActive?: boolean,
-  isExpandable?: boolean,
-  title: string
-  type: 'accordion' | 'link' | 'regular' | 'stripped' | 'tab',
-  wrap?: keyof JSX.IntrinsicElements
-}
 
 
 export function Button({
@@ -27,7 +16,6 @@ export function Button({
   title,
   type,
   wrap}: ButtonProps) {
-    
   const ButtonWrapTag = wrap ?? React.Fragment
 
   const buttonId = useId()
@@ -51,7 +39,7 @@ export function Button({
     <ButtonWrapTag {...buttonWrapOpts}>
       <button
         aria-controls={controlledID}
-        className={cn(s[type], customStyle)}
+        className={cn(s.base, s[type], customStyle)}
         id={buttonId}
         onClick={handleClick}
         title={title}

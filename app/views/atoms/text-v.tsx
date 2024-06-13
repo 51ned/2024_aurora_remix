@@ -1,15 +1,8 @@
 import cn from 'classnames'
 
+import { TextProps } from 'lib/types'
+
 import s from './text.module.css'
-
-
-interface TextProps {
-  children: React.ReactNode,
-  padded?: boolean,
-  paragraph?: boolean,
-  size?: 'smallest' | 'smaller' | 'regular' | 'bigger' | 'biggest',
-  tag?: keyof JSX.IntrinsicElements,
-}
 
 
 export function Text({
@@ -19,7 +12,6 @@ export function Text({
   size = 'regular',
   tag: Tag = 'p'
 }: TextProps) {
-  
   const className = cn(s.base, {
     [s.smallest]: size === 'smallest',
     [s.smaller]: size === 'smaller',

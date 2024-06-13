@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { defineConfig } from 'vite'
+import { defineConfig, ConfigEnv } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 import { installGlobals } from '@remix-run/node'
@@ -13,7 +13,16 @@ import { browserslistToTargets } from 'lightningcss'
 installGlobals()
 
 
-export default () => {
+export default ({ mode }: ConfigEnv) => {
+  const isProd = mode === 'production'
+
+  const genDevName = (name: string, filename: string, css: string) => {
+    const file = path.basename(filename, path.extname(filename))
+    const hash = Buffer.from(css).toString('base64').substring(0, 2)
+    
+    return `${file}__${name}__${hash}`.replace(/\.module/g, '')
+  }
+
   return defineConfig({
     build: {
       cssMinify: 'lightningcss'
@@ -27,7 +36,9 @@ export default () => {
         targets: browserslistToTargets(browserslist('>= 0.25%'))
       },
       modules: {
-        generateScopedName: '[hash:base64:2]'
+        generateScopedName: isProd
+          ? '[hash:base64:2]'
+          : genDevName
       }
     },
 

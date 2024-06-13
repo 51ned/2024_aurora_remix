@@ -4,7 +4,7 @@ import cn from 'classnames'
 import s from './block.module.css'
 
 
-interface BoxProps {
+interface BlockProps {
   children: React.ReactNode,
   container: 'article' | 'div' | 'section',
   wrap?: 'header' | 'div' | 'main',
@@ -17,17 +17,16 @@ export function Block({
   container: Container,
   wrap,
   wrapCustomStyle
-}: BoxProps) {
-  
+}: BlockProps) {
   const Wrap = wrap ?? React.Fragment
-  const wrapDynamicClass: {[key: string]: string} = {}
+  const dynamicClass: {[key: string]: string} = {}
 
   if (wrap) {
-    wrapDynamicClass['className'] = cn(s.wrap, wrapCustomStyle)
+    dynamicClass['className'] = cn(s.wrap, wrapCustomStyle)
   }
 
   return (
-    <Wrap {...wrapDynamicClass}>
+    <Wrap {...dynamicClass}>
       <Container className={s.container}>
         { children }
       </Container>

@@ -9,7 +9,6 @@ import {
   useLoaderData
 } from '@remix-run/react'
 
-import { GTM } from 'views/atoms'
 import { Aside, Footer, Nav } from 'views/orgs'
 
 import {
@@ -17,6 +16,8 @@ import {
   getFromHeaders,
   getFromWindow
 } from 'utils/theme-handles'
+
+import { GTM } from 'utils/gtm-renderer'
 
 import styles from 'styles/index.css?url'
 

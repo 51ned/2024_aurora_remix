@@ -1,6 +1,6 @@
 import type { MetaFunction } from '@remix-run/node'
 
-import { Block, Text as T } from 'views/atoms'
+import { Block, Button, Text as T } from 'views/atoms'
 
 
 export const meta: MetaFunction = () => {
@@ -32,6 +32,10 @@ export default function Index() {
         <h2>Dolor sit amet</h2>
         <T paragraph>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</T>
         <T paragraph>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</T>
+
+        <Button handleClick={() => {}} title='Regular button' type='regular'>
+          Regular button
+        </Button>
       </Block>
     </>
   )

@@ -2,7 +2,7 @@
   margin: 0;
 
   &:not(:last-child) {
-    padding-bottom: var(--indent-20-16);
+    padding-bottom: var(--indent-16-20);
   }
 }
 
@@ -37,5 +37,5 @@
 }
 
 .padded {
-  padding-bottom: var(--indent-20-16);
+  padding-bottom: var(--indent-16-20);
 }

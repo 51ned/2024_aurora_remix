@@ -1,0 +1,71 @@
+.wrap { border: none; z-index: 9; }
+
+.wrap::backdrop {
+  background-color: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(3px)
+}
+
+.wrap[open]::backdrop { animation: fade-in .3s ease; }
+
+.wrap[close] {
+  animation: slide-up .3s ease-in-out forwards;
+  display: block;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wrap[close]::backdrop { animation: fade-out .3s ease; }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: var(--indent-24-16);
+  width: 100%;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--indent-24-16);
+}
+
+
+/* Offcanvas */
+
+
+.offcanvas {
+  height: 100%;
+  min-height: 100vh;
+  min-width: var(--offcanvas-width);
+}
+
+.wrap[open].offcanvas { animation: open-offcanvas .3s ease; }
+
+.wrap[close].offcanvas { animation: close-offcanvas .3s ease; }
+
+
+/* Keyframes */
+
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes open-offcanvas {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes close-offcanvas {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}

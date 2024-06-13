@@ -1,0 +1,51 @@
+.base:not(.horisontal) {
+  list-style: none;
+  margin-bottom: var(--indent-8-12);
+}
+
+/* Horisontal */
+
+.horisontal {
+  display: flex;
+  gap: var(--indent-16-24);
+}
+
+/* Ordered */
+
+.ordered {
+  counter-reset: num;
+}
+
+.ordered > li {
+  padding-left: var(--indent-24-32);
+  position: relative;
+}
+
+.ordered > li::after {
+  content: counter(num) '.'; 
+	counter-increment: num;
+  left: 0;
+	position: absolute;
+  top: 0;
+}
+
+
+/* Unordered */
+
+
+.unordered > li {
+  padding-left: var(--indent-32-24);
+  position: relative;
+}
+
+.unordered > li::after {
+  background-color: var(--bg-black);
+  border-radius: 50%;
+  height: var(--base);
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: var(--base);
+}
+

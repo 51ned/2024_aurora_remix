@@ -98,7 +98,7 @@ export function Toggle({
         className={s.container}
         role='radiogroup'
         style={{
-          borderRadius: getHalf(inputSize),
+          // borderRadius: getHalf(inputSize),
           [gridDir]: `repeat(${inputsData.length}, 1fr)`
         }}
       >
@@ -125,7 +125,7 @@ export function Toggle({
         className={s.status}
         role='status'
         style={{
-          borderRadius: getHalf(statusSize),
+          // borderRadius: getHalf(statusSize),
           height: statusSize,
           marginTop: `-${getHalf(statusSize)}px`,
           transform: `translate${axle}(${checkedIndex * inputSize + borderWidth}px)`,
