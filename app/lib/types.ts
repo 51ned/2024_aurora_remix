@@ -70,6 +70,7 @@ interface LinkProps {
 
 interface ListProps {
   items: string[] | LinkProps[],
+  customStyle?: string,
   padded?: boolean,
   type: ListTypeEnum
 }

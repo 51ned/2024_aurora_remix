@@ -1,6 +1,11 @@
-.base:not(.horisontal) {
+.base {
   list-style: none;
-  margin-bottom: var(--indent-8-12);
+  margin: 0;
+  padding: 0;
+}
+
+.base > li:not(:last-child) {
+  padding-bottom: var(--indent-8-12);
 }
 
 /* Horisontal */

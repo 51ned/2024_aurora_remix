@@ -1,0 +1,23 @@
+.wrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  height: 100%;
+  overflow: hidden;
+  padding: var(--indent-16-24) var(--indent-16-24) var(--indent-16-24) 0;
+
+  @media (--desktop) {
+    backdrop-filter: saturate(180%) blur(5px);
+    flex-direction: row;
+    height: auto;
+    padding: 0;
+  }
+}
+
+.nav {
+  place-self: center end;
+  text-align: right;
+}
+
+.temp {
+  place-self: end start;
+}

@@ -1,13 +1,13 @@
 .base {
   margin: 0;
-
-  &:not(:last-child) {
-    padding-bottom: var(--indent-16-20);
-  }
 }
 
 .paragraph {
   line-height: var(--text-lh);
+
+  &:not(:last-child) {
+    padding-bottom: var(--indent-16-20);
+  }
 }
 
 .smallest {

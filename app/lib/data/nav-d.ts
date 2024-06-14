@@ -5,12 +5,12 @@ export const navData = [
     url: '/o-kompanii'
   },
   {
-    text: 'Экспертизы',
+    text: 'Экспертиза',
     title: 'Экспертизы, проводимые в ЭКЦ «Вектор»',
     url: '/ekspertizy'
   },
   {
-    text: 'Услуги оценки',
+    text: 'Оценка',
     title: 'Услуги оценки в ЭКЦ «Вектор»',
     url: '/uslugi-otsenki'
   },

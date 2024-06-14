@@ -8,25 +8,25 @@ interface BlockProps {
   children: React.ReactNode,
   container: 'article' | 'div' | 'section',
   wrap?: 'header' | 'div' | 'main',
-  wrapCustomStyle?: string
+  customStyle?: string
 }
 
 
 export function Block({
   children,
+  customStyle,
   container: Container,
-  wrap,
-  wrapCustomStyle
+  wrap
 }: BlockProps) {
   const Wrap = wrap ?? React.Fragment
-  const dynamicClass: {[key: string]: string} = {}
+  const wrapStyles: {[key: string]: string} = {}
 
   if (wrap) {
-    dynamicClass['className'] = cn(s.wrap, wrapCustomStyle)
+    wrapStyles['className'] = cn(s.wrap, customStyle)
   }
 
   return (
-    <Wrap {...dynamicClass}>
+    <Wrap {...wrapStyles}>
       <Container className={s.container}>
         { children }
       </Container>

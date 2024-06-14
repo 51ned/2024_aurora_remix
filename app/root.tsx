@@ -9,7 +9,7 @@ import {
   useLoaderData
 } from '@remix-run/react'
 
-import { Aside, Footer, Nav } from 'views/orgs'
+import { Aside, Footer, Navbar } from 'views/orgs'
 
 import {
   getFromCookies,
@@ -72,7 +72,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       <body>
         { children }
 
-        <Nav />
+        <Navbar />
         <Footer />
         <Aside theme={theme} />
         

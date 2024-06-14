@@ -1,0 +1,13 @@
+.logo {
+  left: -410px;
+  position: absolute;
+  z-index: -1;
+}
+
+.figure {
+  fill: red;
+}
+
+.text {
+  fill: var(--base-clr-inv);
+}
