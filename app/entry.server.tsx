@@ -28,7 +28,7 @@ export default function handleRequest(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext
 ) {
-  responseHeaders.append('Accept-CH', 'Sec-CH-Prefers-Color-Scheme')
+  responseHeaders.append('accept-ch', 'sec-ch-prefers-color-scheme, sec-ch-viewport-width')
   
   return isbot(request.headers.get('user-agent') || '')
     ? handleBotRequest(

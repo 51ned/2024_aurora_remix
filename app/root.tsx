@@ -12,12 +12,11 @@ import {
 import { Aside, Footer, Navbar } from 'views/orgs'
 
 import {
-  getFromCookies,
   getFromHeaders,
-  getFromWindow
-} from 'utils/theme-handles'
+  themeFromCookies
+} from 'utils/headers-handles'
 
-import { GTM } from 'utils/gtm-renderer'
+import { GTM, themeFromWindow } from 'utils/.'
 
 import styles from 'styles/index.css?url'
 
@@ -27,15 +26,17 @@ const links = () => {
 }
 
 const loader = async ({ request }: LoaderFunctionArgs) => {
-  let res = getFromCookies(request)
+  const vwRes = getFromHeaders('sec-ch-viewport-width', request)
+  let themeRes = themeFromCookies(request)
   
-  if (!res) {
-    res = getFromHeaders(request)
+  if (!themeRes) {
+    themeRes = getFromHeaders('sec-ch-prefers-color-scheme', request)
   }
 
   return json({
     gtmId: process.env.GTM_ID,
-    theme: res
+    theme: themeRes,
+    vw: vwRes
   })
 }
 
@@ -44,11 +45,12 @@ function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
   
   if (!theme) {
-    theme = getFromWindow()
+    theme = themeFromWindow()
   }
-
+  // и хук с медиа-запросом тоже сюда в ифчик
   const gtmId = useLoaderData<typeof loader>().gtmId
-  
+  const vw = useLoaderData<typeof loader>().vw
+  console.log(vw)
   return (
     <html dir='ltr' lang='ru'>
       <head>

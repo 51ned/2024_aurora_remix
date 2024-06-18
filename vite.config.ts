@@ -62,7 +62,7 @@ export default ({ mode }: ConfigEnv) => {
 
     server: {
       headers: {
-        'accept-ch': 'sec-ch-prefers-color-scheme'
+        'accept-ch': 'sec-ch-prefers-color-scheme sec-ch-viewport-width'
       },
       port: 3000
     }

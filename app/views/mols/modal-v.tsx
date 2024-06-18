@@ -1,9 +1,13 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+
 import cn from 'classnames'
 
-import { useCallback, useContext } from 'react'
+import { useCallback } from 'react'
 
-import { ModalContext } from 'stores/.'
-import { Button } from '.'
+import { modalStore } from 'stores/modal-s'
+import { Button, Heading as H } from 'views/atoms'
 
 import style from './modal.module.css'
 
@@ -26,35 +30,35 @@ export function Modal({
   withStyle,
   withTitle
 }: ModalProps) {
-  const { closeModal, refsObj } = useContext(ModalContext)
+  const { closeModal, refObj } = modalStore
 
   const dialogRef = useCallback((node: HTMLDialogElement) => {
-    refsObj[refName] = node
-  }, [refName, refsObj])
+    refObj[refName] = node
+  }, [refName, refObj])
 
   const dialogClasses = cn(style.wrap, style[withStyle], {})  
 
   const backdropClick = useCallback((currentTarget: { target: object }) => {
-    currentTarget.target === refsObj[refName] && closeModal(refsObj[refName])
-  }, [closeModal, refName, refsObj])
+    currentTarget.target === refObj[refName] && closeModal(refObj[refName])
+  }, [closeModal, refName, refObj])
   
   return (
     <dialog
       aria-labelledby={controllingID}
       className={dialogClasses}
       id={dialogID}
-      onCancel={() => closeModal(refsObj[refName])}
+      onCancel={() => closeModal(refObj[refName])}
       onClick={backdropClick}
       ref={dialogRef}
     >
       <section className={style.container}>
         <div className={style.header}>
-          <h3>{ withTitle }</h3>
+          <H level='3'>{ withTitle }</H>
           
           <Button 
-            handleClick={() => closeModal(refsObj[refName])}
-            withStyle='stripped'
-            withTitle='Закрыть главное меню'
+            handleClick={() => closeModal(refObj[refName])}
+            title='Закрыть главное меню'
+            type='stripped'
           />
         </div>
         

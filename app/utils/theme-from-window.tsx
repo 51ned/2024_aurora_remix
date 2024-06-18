@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
-import { setCookies } from './set-cookies'
+import { themeToCookies } from 'utils/headers-handles'
 
 
-export function getFromWindow() {
+export function themeFromWindow() {
   let theme = 'light'
 
   if (typeof window !== 'undefined') {
@@ -14,7 +14,7 @@ export function getFromWindow() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setCookies(theme)
+      themeToCookies(theme)
     }
   }, [])
 

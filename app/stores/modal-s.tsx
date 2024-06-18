@@ -1,20 +1,15 @@
-import React, { createContext } from 'react'
+import { makeAutoObservable } from 'mobx'
 
 
-interface ModalContextProps {
-  closeModal: (node: HTMLDialogElement) => void,
-  openModal: (node: HTMLDialogElement) => void,
-  refsObj: {[key: string]: HTMLDialogElement}
+interface RefObj {
+  [key: string]: HTMLDialogElement
 }
 
 
-const ModalContext = createContext({} as ModalContextProps)
+export const modalStore = makeAutoObservable({
+  refObj: {} as RefObj,
 
-
-function ModalProvider({ children }: any) {
-  const refsObj = {}
-
-  const openModal = (node: HTMLDialogElement) => {
+  openModal(node: HTMLDialogElement) {
     node.showModal()
 
     const documentWidth = document.documentElement.clientWidth
@@ -22,9 +17,9 @@ function ModalProvider({ children }: any) {
     const scrollbarWidth = windowWidth - documentWidth
     
     document.body.setAttribute('style', `overflow:hidden; margin-right:${scrollbarWidth}px;`)
-  }
+  },
 
-  const closeModal = (node: HTMLDialogElement) => {
+  closeModal(node: HTMLDialogElement) {
     node.setAttribute('close', '')
     node.addEventListener('animationend', () => {
       node.removeAttribute('close')
@@ -33,13 +28,4 @@ function ModalProvider({ children }: any) {
 
     document.body.removeAttribute('style')
   }
-
-  return (
-    <ModalContext.Provider value={{closeModal, openModal, refsObj}}>
-      { children }
-    </ModalContext.Provider>
-  )
-}
-
-
-export { ModalContext, ModalProvider }
+})

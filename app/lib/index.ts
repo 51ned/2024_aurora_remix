@@ -1,1 +1,2 @@
-export * from './gtm'
+export * from './breakpoints'
+export * from './types'

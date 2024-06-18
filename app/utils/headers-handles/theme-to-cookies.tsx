@@ -1,4 +1,4 @@
-export function setCookies(theme: string) {
+export function themeToCookies(theme: string) {
   const expires = new Date()
   expires.setFullYear(expires.getFullYear() + 1)
 
