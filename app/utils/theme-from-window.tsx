@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import { themeToCookies } from 'utils/headers-handles'
 
 
@@ -10,13 +8,9 @@ export function themeFromWindow() {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       theme = 'dark'
     }
-  }
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      themeToCookies(theme)
-    }
-  }, [])
+    themeToCookies(theme)
+  }
 
   return theme
 }

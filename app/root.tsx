@@ -43,14 +43,14 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
 
 function Layout({ children }: { children: React.ReactNode }) {
   let theme = useLoaderData<typeof loader>().theme
+  let vw = useLoaderData<typeof loader>().vw
+
+  const gtmId = useLoaderData<typeof loader>().gtmId
   
   if (!theme) {
     theme = themeFromWindow()
   }
-  // и хук с медиа-запросом тоже сюда в ифчик
-  const gtmId = useLoaderData<typeof loader>().gtmId
-  const vw = useLoaderData<typeof loader>().vw
-  console.log(vw)
+
   return (
     <html dir='ltr' lang='ru'>
       <head>
