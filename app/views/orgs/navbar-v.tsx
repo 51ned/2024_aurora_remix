@@ -1,16 +1,14 @@
 import { List, Logo } from 'views/atoms'
 
-import { useMediaQuery } from 'hooks/.'
-
 import { BREAKPOINTS } from 'lib/breakpoints'
 import { navData } from 'lib/data'
 
 import s from './navbar.module.css'
 
 
-export function Navbar() {
-  const isTablet = useMediaQuery(BREAKPOINTS.XL)
-
+export function Navbar({ vw }: { vw: number | undefined }) {
+  const isTablet = vw ? vw > BREAKPOINTS.XL : true
+  
   return (
     <nav>
       <div className={s.wrap}>

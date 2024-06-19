@@ -16,7 +16,7 @@ import {
   themeFromCookies
 } from 'utils/headers-handles'
 
-import { GTM, themeFromWindow } from 'utils/.'
+import { GTM, themeFromWindow, vwFromWindow } from 'utils/.'
 
 import styles from 'styles/index.css?url'
 
@@ -26,31 +26,33 @@ const links = () => {
 }
 
 const loader = async ({ request }: LoaderFunctionArgs) => {
-  const vwRes = getFromHeaders('sec-ch-viewport-width', request)
   let themeRes = themeFromCookies(request)
+
+  let vwRes = getFromHeaders('sec-ch-viewport-width', request)
+  let initVw = 0
   
   if (!themeRes) {
     themeRes = getFromHeaders('sec-ch-prefers-color-scheme', request)
   }
 
+  if (typeof vwRes === 'string') {
+    initVw = +vwRes
+  }
+
   return json({
     gtmId: process.env.GTM_ID,
-    theme: themeRes,
-    vw: vwRes
+    initVw,
+    themeRes
   })
 }
 
 
 function Layout({ children }: { children: React.ReactNode }) {
-  let theme = useLoaderData<typeof loader>().theme
-  let vw = useLoaderData<typeof loader>().vw
-
-  const gtmId = useLoaderData<typeof loader>().gtmId
+  let { gtmId, themeRes, initVw } = useLoaderData<typeof loader>()
   
-  if (!theme) {
-    theme = themeFromWindow()
-  }
-
+  const theme = themeRes || themeFromWindow()
+  const vw = initVw || vwFromWindow()
+  
   return (
     <html dir='ltr' lang='ru'>
       <head>
@@ -74,7 +76,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       <body>
         { children }
 
-        <Navbar />
+        <Navbar vw={vw} />
         <Footer />
         <Aside theme={theme} />
         
