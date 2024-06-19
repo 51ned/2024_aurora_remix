@@ -28,7 +28,7 @@ const links = () => {
 const loader = async ({ request }: LoaderFunctionArgs) => {
   let themeRes = themeFromCookies(request)
 
-  let vwRes = getFromHeaders('sec-ch-viewport-width', request)
+  const vwRes = getFromHeaders('sec-ch-viewport-width', request)
   let initVw = 0
   
   if (!themeRes) {
@@ -48,8 +48,7 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
 
 
 function Layout({ children }: { children: React.ReactNode }) {
-  let { gtmId, themeRes, initVw } = useLoaderData<typeof loader>()
-  console.log(initVw)
+  const { gtmId, themeRes, initVw } = useLoaderData<typeof loader>()
   const theme = themeRes || themeFromWindow()
   const vw = initVw || vwFromWindow()
   
