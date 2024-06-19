@@ -49,7 +49,7 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
 
 function Layout({ children }: { children: React.ReactNode }) {
   let { gtmId, themeRes, initVw } = useLoaderData<typeof loader>()
-  
+  console.log(initVw)
   const theme = themeRes || themeFromWindow()
   const vw = initVw || vwFromWindow()
   
