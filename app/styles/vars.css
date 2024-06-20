@@ -1,13 +1,7 @@
+@import url(breakpoints.css);
+
+
 :root {
-  /* Breakpoints */
-
-  --xs-bp: 320px;
-  --s-bp: 576px;
-  --m-bp: 768px;
-  --l-bp: 1024px;
-  --xl-bp: 1280px;
-  --xxl-bp: 1440px;
-
   /* Geometry */
 
   --base: 4px;

@@ -51,7 +51,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   const { gtmId, themeRes, initVw } = useLoaderData<typeof loader>()
   const theme = themeRes || themeFromWindow()
   const vw = initVw || vwFromWindow()
-  
+
   return (
     <html dir='ltr' lang='ru'>
       <head>

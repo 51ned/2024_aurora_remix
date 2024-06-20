@@ -1,5 +1,5 @@
 /**
-  * Reusable & full-customisable toggle component. And hate inline-styles too, but...
+  * Reusable & full-customisable toggle component. I hate inline-styles too, but...
   * ...having been impressed by this video: https://www.youtube.com/watch?v=8LFbS78a4Rw, i choose radio buttons.
   * V. Makeev hardcoded the animation in CSS for the three-position, horisontal-oriented toggle only.
   * Unlike that, I wanted to create a toggle that could have any number of positions and free orientation.
