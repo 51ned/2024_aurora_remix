@@ -1,0 +1,44 @@
+/**
+  vwHandle component handles viewport width-dependent rendering logic.
+  It fetches `initWidth` from headers to ensure components know what to render server-side,
+  allowing for consistent rendering across server and client environments without relying on useEffect.
+ */
+
+
+import { useState } from 'react'
+import { useLoaderData } from '@remix-run/react'
+
+
+type LoaderData = {
+  initWidth: string | null
+}
+
+
+export function vwHandle(bpWidth: number) {
+  const { initWidth } = useLoaderData<LoaderData>()
+
+  const [isTargetReached, setTargetReached] = useState<boolean | null>(null)
+  const [count, setCount] = useState(0)
+  
+  let mql: MediaQueryList
+
+  const updateTarget = (matches: boolean) => {
+    setTargetReached(matches)
+  }
+
+  const listenChanges = () => {
+    if (typeof window !== 'undefined') {
+      mql = window.matchMedia(`(min-width: ${bpWidth}px)`)
+      mql.addEventListener('change', e => updateTarget(e.matches))
+    }
+  }
+
+  if (initWidth && count < 1) {
+    setTargetReached(+initWidth >= bpWidth)
+    setCount(1)
+  }
+
+  listenChanges()
+
+  return isTargetReached
+}

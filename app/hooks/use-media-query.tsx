@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 export function useMediaQuery(width: number) {
   const [targetReached, setTargetReached] = useState(false)
 
-  const updateTarget = useCallback((e: { matches: unknown }) => {
+  const updateTarget = (e: { matches: boolean }) => {
     e.matches
       ? setTargetReached(true)
       : setTargetReached(false)
-  }, [])
+  }
 
   useEffect(() => {
     const media = window.matchMedia(`(min-width: ${width}px)`)
