@@ -1,5 +1,5 @@
 /**
-  vwHandle component handles viewport width-dependent rendering logic.
+  Сomponent handles viewport width-dependent rendering logic.
   It fetches `initWidth` from headers to ensure components know what to render server-side,
   allowing for consistent rendering across server and client environments without relying on useEffect.
  */
@@ -27,10 +27,7 @@ export function vwHandle(bpWidth: number) {
   }
 
   const listenChanges = () => {
-    if (typeof window !== 'undefined') {
-      mql = window.matchMedia(`(min-width: ${bpWidth}px)`)
-      mql.addEventListener('change', e => updateTarget(e.matches))
-    }
+    mql.addEventListener('change', e => updateTarget(e.matches))
   }
 
   if (initWidth && count < 1) {
@@ -38,7 +35,15 @@ export function vwHandle(bpWidth: number) {
     setCount(1)
   }
 
-  listenChanges()
+  if (typeof window !== 'undefined') {
+    mql = window.matchMedia(`(min-width: ${bpWidth}px)`)
+
+    if (count < 1) {
+      updateTarget(mql.matches)
+    }
+
+    listenChanges()
+  }
 
   return isTargetReached
 }
