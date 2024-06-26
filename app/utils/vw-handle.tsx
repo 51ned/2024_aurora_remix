@@ -38,9 +38,10 @@ export function vwHandle(bpWidth: number) {
   if (typeof window !== 'undefined') {
     mql = window.matchMedia(`(min-width: ${bpWidth}px)`)
 
-    // if (count < 1) {
-    //   updateTarget(mql.matches)
-    // }
+    // bug here
+    if (!initWidth && count < 1) {
+      updateTarget(mql.matches)
+    }
 
     listenChanges()
   }
