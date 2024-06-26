@@ -20,16 +20,14 @@ export function vwHandle(bpWidth: number) {
   const [isTargetReached, setTargetReached] = useState<boolean | null>(null)
   const [count, setCount] = useState(0)
   
-  let mql: MediaQueryList | null = null
+  let mql: MediaQueryList
 
   const updateTarget = (matches: boolean) => {
     setTargetReached(matches)
   }
 
   const listenChanges = () => {
-    if (mql) {
-      mql.addEventListener('change', e => updateTarget(e.matches))
-    }
+    mql.addEventListener('change', e => updateTarget(e.matches))
   }
 
   if (initWidth && count < 1) {
@@ -37,12 +35,12 @@ export function vwHandle(bpWidth: number) {
     setCount(1)
   }
 
-  if (typeof window !== 'undefined' && !mql) {
+  if (typeof window !== 'undefined') {
     mql = window.matchMedia(`(min-width: ${bpWidth}px)`)
 
-    if (count < 1) {
-      updateTarget(mql.matches)
-    }
+    // if (count < 1) {
+    //   updateTarget(mql.matches)
+    // }
 
     listenChanges()
   }
