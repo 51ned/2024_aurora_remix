@@ -40,7 +40,7 @@ export function vwHandle(bpWidth: number) {
 
     // bug here
     if (!initWidth && count < 1) {
-      updateTarget(mql.matches)
+      console.log(mql.matches)
     }
 
     listenChanges()
