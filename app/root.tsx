@@ -26,7 +26,7 @@ const links = () => {
 }
 
 const loader = async ({ request }: LoaderFunctionArgs) => {
-  const initWidth = getFromHeaders('sec-ch-viewport-width', request)
+  const initVw = getFromHeaders('sec-ch-viewport-width', request)
   let themeRes = themeFromCookies(request)
   
   if (!themeRes) {
@@ -35,7 +35,7 @@ const loader = async ({ request }: LoaderFunctionArgs) => {
 
   return json({
     gtmId: process.env.GTM_ID,
-    initWidth,
+    initVw,
     themeRes
   })
 }

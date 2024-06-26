@@ -1,46 +1,49 @@
 /**
- * Component handles viewport width-dependent rendering logic.
- * It fetches `initWidth` from headers to ensure components know what to render server-side,
- * allowing for consistent rendering across server and client environments without relying on useEffect.
+  This function handles viewport width-dependent rendering logic.
+  It fetches `initVw` from http-headers (look at app/root.tsx) to ensure components know what to render server-side,
+  allowing for consistent rendering across server and client environments without relying on 'useEffect'.
+  'useRef' needed to ensure, that event listener will be added only once.
  */
 
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useLoaderData } from '@remix-run/react'
 
 
 type LoaderData = {
-  initWidth: string | null
+  initVw: string | null
 }
 
 
 export function vwHandle(bpWidth: number) {
-  const { initWidth } = useLoaderData<LoaderData>()
-  
+  const { initVw } = useLoaderData<LoaderData>()
   const [isTargetReached, setTargetReached] = useState<boolean | null>(null)
-  const [count, setCount] = useState(0)
-  
+  const hasListener = useRef(false)
+
   let mql: MediaQueryList
 
-  const listenChanges = () => {
-    mql.addEventListener('change', e => setTargetReached(e.matches))
-  }
+  const targetsHandle = () => {
+    if (typeof window !== 'undefined') {
+      mql = window.matchMedia(`(min-width: ${bpWidth}px)`)
 
-  if (initWidth && count < 1) {
-    setTargetReached(+initWidth >= bpWidth)
-    setCount(1)
-  }
+      if (isTargetReached === null) {
+        setTargetReached(mql.matches)
+      }
 
-  if (typeof window !== 'undefined') {
-    mql = window.matchMedia(`(min-width: ${bpWidth}px)`)
-
-    // bug here
-    if (!initWidth && count < 1) {
-      setTargetReached(mql.matches)
+      if (hasListener.current === false) {
+        mql.addEventListener('change', (e) => setTargetReached(e.matches))
+        hasListener.current = true
+      }
     }
-
-    listenChanges()
   }
 
+  if (initVw) {
+    if (isTargetReached === null) {
+      setTargetReached(+initVw >= bpWidth)
+    }
+  } 
+  
+  targetsHandle()
+  
   return isTargetReached
 }
