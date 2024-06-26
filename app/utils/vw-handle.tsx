@@ -22,12 +22,8 @@ export function vwHandle(bpWidth: number) {
   
   let mql: MediaQueryList
 
-  const updateTarget = (matches: boolean) => {
-    setTargetReached(matches)
-  }
-
   const listenChanges = () => {
-    mql.addEventListener('change', e => updateTarget(e.matches))
+    mql.addEventListener('change', e => setTargetReached(e.matches))
   }
 
   if (initWidth && count < 1) {
@@ -40,7 +36,7 @@ export function vwHandle(bpWidth: number) {
 
     // bug here
     if (!initWidth && count < 1) {
-      console.log(mql.matches)
+      setTargetReached(mql.matches)
     }
 
     listenChanges()
